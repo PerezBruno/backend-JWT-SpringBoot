@@ -1,10 +1,11 @@
 
-package security.entity;
+package com.tutorial.crud.security.entity;
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario {
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
@@ -28,7 +29,7 @@ public class Usuario {
     @NotNull
     private String password;
     @NotNull
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     /*tabla intermedia que indica que un rol puede tener varios usarios y varios usuarios tener un mismo rol*/
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
@@ -90,6 +91,7 @@ public class Usuario {
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
+    
     
     
 }

@@ -1,15 +1,13 @@
 
-package security.service;
+package com.tutorial.crud.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import security.entity.Usuario;
-import security.entity.UsuarioPrincipal;
-
-
+import com.tutorial.crud.security.entity.Usuario;
+import com.tutorial.crud.security.entity.UsuarioPrincipal;
 
 
 @Service

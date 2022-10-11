@@ -1,12 +1,12 @@
 
-package security.service;
+package com.tutorial.crud.security.service;
 
+import com.tutorial.crud.security.repository.UsuarioRepositoryInterface;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import security.repository.UsuarioRepositoryInterface;
-import security.entity.Usuario;
+import com.tutorial.crud.security.entity.Usuario;
 
 
 @Service
@@ -33,3 +33,4 @@ public class UsuarioService {
         usuarioRepositoryInterface.save(usuario);
     }
 }
+

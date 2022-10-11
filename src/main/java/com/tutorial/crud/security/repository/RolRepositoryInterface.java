@@ -1,11 +1,11 @@
 
-package security.repository;
+package com.tutorial.crud.security.repository;
 
+import com.tutorial.crud.security.enums.RolNombre;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import security.entity.Rol;
-import security.enums.RolNombre;
+import com.tutorial.crud.security.entity.Rol;
 
 
 @Repository

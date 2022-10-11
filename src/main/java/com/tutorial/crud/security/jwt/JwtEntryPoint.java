@@ -1,5 +1,5 @@
-/*Esta clase comprueba si hay un token válido*/
-package security.jwt;
+
+package com.tutorial.crud.security.jwt;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,6 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class JwtEntryPoint implements AuthenticationEntryPoint {
 
@@ -19,7 +20,7 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
     
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e) throws IOException, ServletException {
-        logguer.error("fail en el método commence");
+        logguer.error("fail en el método commence"+ e.getMessage());
         res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "no autorizado");
     }
     

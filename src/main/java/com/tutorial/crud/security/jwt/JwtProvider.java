@@ -1,6 +1,7 @@
-/*Esta clase genera el token + un método de validación */
-package security.jwt;
 
+package com.tutorial.crud.security.jwt;
+
+import com.tutorial.crud.security.entity.UsuarioPrincipal;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -8,13 +9,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import java.util.Date;
+import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
-import security.entity.UsuarioPrincipal;
-
 
 @Component
 public class JwtProvider {
@@ -28,7 +27,10 @@ public class JwtProvider {
         
         public String generateToken(Authentication authentication){
             UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
-            return Jwts.builder().setSubject(usuarioPrincipal.getUsername()).setExpiration(new Date(new Date().getTime()+ expiration*1000)).signWith(SignatureAlgorithm.HS512, secret).compact();
+            return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(new Date().getTime()+ expiration*1000))
+                    .signWith(SignatureAlgorithm.HS512, secret).compact();
         }
         
         public String getNombreUsuarioFromToken(String token){
@@ -55,4 +57,3 @@ public class JwtProvider {
         }
 
 }
-

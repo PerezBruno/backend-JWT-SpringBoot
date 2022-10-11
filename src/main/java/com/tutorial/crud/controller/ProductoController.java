@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/producto")
@@ -42,6 +43,7 @@ public class ProductoController {
         return new ResponseEntity(producto, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getNombre()))
@@ -55,6 +57,8 @@ public class ProductoController {
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }
 
+    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody ProductoDto productoDto){
         if(!productoService.existsById(id))
@@ -73,6 +77,8 @@ public class ProductoController {
         return new ResponseEntity(new Mensaje("producto actualizado"), HttpStatus.OK);
     }
 
+    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!productoService.existsById(id))
